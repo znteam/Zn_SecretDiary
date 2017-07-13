@@ -22,9 +22,9 @@ public class ToMeActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ÉèÖÃÎªÎŞ±êÌâ
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ÉèÖÃÎªÈ«ÆÁÄ£Ê½
+		// è®¾ç½®ä¸ºå…¨å±æ¨¡å¼
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -46,29 +46,29 @@ public class ToMeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.tome_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
-		case R.id.tome_iv_ok:
+			case R.id.tome_layout_back:
+				finish();
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
+			case R.id.tome_iv_ok:
 
-			if (contentEt.getText().toString() != null
-					&& !"".equals(contentEt.getText().toString().trim())) {
+				if (contentEt.getText().toString() != null
+						&& !"".equals(contentEt.getText().toString().trim())) {
 
-				Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("plain/text");
-				intent.putExtra(Intent.EXTRA_EMAIL,
-						new String[] { "ht521880601@qq.com" });
-				intent.putExtra(Intent.EXTRA_SUBJECT, "ÃØÃÜÈÕ¼Ç->Òâ¼û·´À¡");
-				intent.putExtra(android.content.Intent.EXTRA_TEXT, contentEt
-						.getText().toString().trim());
-				startActivity(Intent.createChooser(intent, "tome..."));
-			}
-			break;
+					Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+					intent.setType("plain/text");
+					intent.putExtra(Intent.EXTRA_EMAIL,
+							new String[] { "ht521880601@qq.com" });
+					intent.putExtra(Intent.EXTRA_SUBJECT, "ç§˜å¯†æ—¥è®°->æ„è§åé¦ˆ");
+					intent.putExtra(android.content.Intent.EXTRA_TEXT, contentEt
+							.getText().toString().trim());
+					startActivity(Intent.createChooser(intent, "tome..."));
+				}
+				break;
 		}
 	}
-	
-	
+
+
 	@Override
 	protected void onStop() {
 		super.onStop();

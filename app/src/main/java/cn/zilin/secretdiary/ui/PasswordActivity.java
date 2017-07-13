@@ -25,9 +25,9 @@ public class PasswordActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ÉèÖÃÎªÎŞ±êÌâ
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ÉèÖÃÎªÈ«ÆÁÄ£Ê½
+		// è®¾ç½®ä¸ºå…¨å±æ¨¡å¼
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -51,43 +51,43 @@ public class PasswordActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.password_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
-		case R.id.password_iv_ok:
-			String oldPw = oldPwEt.getText().toString();
-			String newPw1 = newPw1Et.getText().toString();
-			String newPw2 = newPw2Et.getText().toString();
-			
-			if("".equals(oldPw.trim())){
-				Toast.makeText(this, "Ô­ÃÜÂë²»ÄÜÎª¿Õ", 0).show();
-			}else if("".equals(newPw1.trim())){
-				Toast.makeText(this, "ĞÂÃÜÂë²»ÄÜÎª¿Õ", 0).show();
-			}else if("".equals(newPw2.trim())){
-				Toast.makeText(this, "È·ÈÏÃÜÂë²»ÄÜÎª¿Õ", 0).show();
-			} else if (newPw1.length() < 6) {
-				Toast.makeText(v.getContext(), "ĞÂÃÜÂë²»ÄÜĞ¡ÓÚ6Î»Êı", 0).show();
-				newPw1Et.setText("");
-				newPw2Et.setText("");
-			} else if(!newPw1.equals(newPw2)){
-				Toast.makeText(this, "Á½´ÎÊäÈëĞÂÃÜÂë²»Ò»ÖÂ", 0).show();
-				newPw1Et.setText("");
-				newPw2Et.setText("");
-			}else if(!PreferencesUtil.checkPassword(this, oldPw)){
-				Toast.makeText(this, "Ô­ÃÜÂë²»ÕıÈ·", 0).show();
-				oldPwEt.setText("");
-				newPw1Et.setText("");
-				newPw2Et.setText("");
-			}else if(!PreferencesUtil.savePassword(this, newPw1)){
-				Toast.makeText(this, "ÏµÍ³³ö´í£ºÉèÖÃĞÂÃÜÂëÊ§°Ü£¡ÇëÖØÊÔ", 0).show();
-			}else{
-				Toast.makeText(this, "ÉèÖÃĞÂÃÜÂë³É¹¦", 0).show();
+			case R.id.password_layout_back:
 				finish();
-			}
-			
-			break;
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
+			case R.id.password_iv_ok:
+				String oldPw = oldPwEt.getText().toString();
+				String newPw1 = newPw1Et.getText().toString();
+				String newPw2 = newPw2Et.getText().toString();
+
+				if("".equals(oldPw.trim())){
+					Toast.makeText(this, "åŸå¯†ç ä¸èƒ½ä¸ºç©º", 0).show();
+				}else if("".equals(newPw1.trim())){
+					Toast.makeText(this, "æ–°å¯†ç ä¸èƒ½ä¸ºç©º", 0).show();
+				}else if("".equals(newPw2.trim())){
+					Toast.makeText(this, "ç¡®è®¤å¯†ç ä¸èƒ½ä¸ºç©º", 0).show();
+				} else if (newPw1.length() < 6) {
+					Toast.makeText(v.getContext(), "æ–°å¯†ç ä¸èƒ½å°äº6ä½æ•°", 0).show();
+					newPw1Et.setText("");
+					newPw2Et.setText("");
+				} else if(!newPw1.equals(newPw2)){
+					Toast.makeText(this, "ä¸¤æ¬¡è¾“å…¥æ–°å¯†ç ä¸ä¸€è‡´", 0).show();
+					newPw1Et.setText("");
+					newPw2Et.setText("");
+				}else if(!PreferencesUtil.checkPassword(this, oldPw)){
+					Toast.makeText(this, "åŸå¯†ç ä¸æ­£ç¡®", 0).show();
+					oldPwEt.setText("");
+					newPw1Et.setText("");
+					newPw2Et.setText("");
+				}else if(!PreferencesUtil.savePassword(this, newPw1)){
+					Toast.makeText(this, "ç³»ç»Ÿå‡ºé”™ï¼šè®¾ç½®æ–°å¯†ç å¤±è´¥ï¼è¯·é‡è¯•", 0).show();
+				}else{
+					Toast.makeText(this, "è®¾ç½®æ–°å¯†ç æˆåŠŸ", 0).show();
+					finish();
+				}
+
+				break;
 		}
 	}
-	
+
 }

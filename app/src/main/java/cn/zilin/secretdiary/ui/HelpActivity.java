@@ -22,9 +22,9 @@ public class HelpActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ÉèÖÃÎªÎŞ±êÌâ
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ÉèÖÃÎªÈ«ÆÁÄ£Ê½
+		// è®¾ç½®ä¸ºå…¨å±æ¨¡å¼
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -34,27 +34,27 @@ public class HelpActivity extends Activity implements OnClickListener {
 		backLayout = (LinearLayout) this.findViewById(R.id.help_layout_back);
 
 		backLayout.setOnClickListener(this);
-		
+
 		tv1 = (TextView) this.findViewById(R.id.help_tv_tv1);
 		tv2 = (TextView) this.findViewById(R.id.help_tv_tv2);
 		iv1 = (ImageView) this.findViewById(R.id.help_iv_iv1);
 		iv2 = (ImageView) this.findViewById(R.id.help_iv_iv2);
-		
-		tv1.setText("ÃØÃÜÈÕ¼ÇÖ÷Ò³¹¦ÄÜ£º\n\n1.µã»÷ÁĞ±í£¬¿É´ò¿ªä¯ÀÀÈÕ¼Ç\n2.³¤°´ÆÁÄ»£¬¿É±à¼­ÈÕ¼Ç£¨É¾³ı¡¢ĞŞ¸Ä£©\n3.ÍÏÏÂÁĞ±í£¬¿ÉÏÔÊ¾/Òş²ØËÑË÷ÈÕ¼Ç£¨ÁĞ±í´¦ÓÚ¶¥²¿×´Ì¬Ê±£©\n4.¸ù¾İ±êÌâ¹Ø¼ü×ÖËÑË÷Ïà¹Ø±êÌâµÄÈÕ¼Ç£¬ÊäÈë¡°*¡±¿ÉËÑË÷ËùÓĞ±êÖ¾ÖØÒªµÄÈÕ¼Ç\n5.²Ëµ¥»òËÑË÷°´¼ü¿ÉÏÔÊ¾/Òş²ØËÑË÷ÈÕ¼Ç¹¦ÄÜ");
+
+		tv1.setText("ç§˜å¯†æ—¥è®°ä¸»é¡µåŠŸèƒ½ï¼š\n\n1.ç‚¹å‡»åˆ—è¡¨ï¼Œå¯æ‰“å¼€æµè§ˆæ—¥è®°\n2.é•¿æŒ‰å±å¹•ï¼Œå¯ç¼–è¾‘æ—¥è®°ï¼ˆåˆ é™¤ã€ä¿®æ”¹ï¼‰\n3.æ‹–ä¸‹åˆ—è¡¨ï¼Œå¯æ˜¾ç¤º/éšè—æœç´¢æ—¥è®°ï¼ˆåˆ—è¡¨å¤„äºé¡¶éƒ¨çŠ¶æ€æ—¶ï¼‰\n4.æ ¹æ®æ ‡é¢˜å…³é”®å­—æœç´¢ç›¸å…³æ ‡é¢˜çš„æ—¥è®°ï¼Œè¾“å…¥â€œ*â€å¯æœç´¢æ‰€æœ‰æ ‡å¿—é‡è¦çš„æ—¥è®°\n5.èœå•æˆ–æœç´¢æŒ‰é”®å¯æ˜¾ç¤º/éšè—æœç´¢æ—¥è®°åŠŸèƒ½");
 		iv1.setImageResource(R.drawable.help_item1);
-		tv2.setText("\n\nä¯ÀÀÈÕ¼Ç¹¦ÄÜ£º\n\n1.×óÓÒ»¬ÆÁ£¬¿Éä¯ÀÀÉÏÒ»Æª/ÏÂÒ»ÆªÈÕ¼Ç\n2.³¤°´ÆÁÄ»£¬¿É±à¼­ÈÕ¼Ç£¨É¾³ı¡¢ĞŞ¸Ä¡¢±ê¼Ç£©\n3.Ë«Ö¸ËõĞ¡£¬¿ÉÍË³öä¯ÀÀÈÕ¼Çµ½Ö÷Ò³");
+		tv2.setText("\n\næµè§ˆæ—¥è®°åŠŸèƒ½ï¼š\n\n1.å·¦å³æ»‘å±ï¼Œå¯æµè§ˆä¸Šä¸€ç¯‡/ä¸‹ä¸€ç¯‡æ—¥è®°\n2.é•¿æŒ‰å±å¹•ï¼Œå¯ç¼–è¾‘æ—¥è®°ï¼ˆåˆ é™¤ã€ä¿®æ”¹ã€æ ‡è®°ï¼‰\n3.åŒæŒ‡ç¼©å°ï¼Œå¯é€€å‡ºæµè§ˆæ—¥è®°åˆ°ä¸»é¡µ");
 		iv2.setImageResource(R.drawable.help_item2);
-		
+
 		AdUtil.initAd(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.help_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
+			case R.id.help_layout_back:
+				finish();
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
 		}
 	}
 

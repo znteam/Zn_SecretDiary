@@ -23,9 +23,9 @@ public class UserActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// …Ë÷√Œ™Œﬁ±ÍÃ‚
+		// ËÆæÁΩÆ‰∏∫Êó†Ê†áÈ¢ò
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// …Ë÷√Œ™»´∆¡ƒ£ Ω
+		// ËÆæÁΩÆ‰∏∫ÂÖ®Â±èÊ®°Âºè
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -47,39 +47,39 @@ public class UserActivity extends Activity implements OnClickListener {
 		toSdTv.setOnClickListener(this);
 		aboutTv.setOnClickListener(this);
 		helpTv.setOnClickListener(this);
-		
+
 		AdUtil.initAd(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.user_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
-		case R.id.user_tv_change_password:
-			startActivity(PasswordActivity.class);
-			break;
-		case R.id.user_tv_tome:
-			startActivity(ToMeActivity.class);
-			break;
-		case R.id.user_tv_tosd:
-			startActivity(ToSdActivity.class);
-			break;
-		case R.id.user_tv_about:
-			startActivity(AboutActivity.class);
-			break;
-		case R.id.user_tv_help:
-			startActivity(HelpActivity.class);
-			break;
+			case R.id.user_layout_back:
+				finish();
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
+			case R.id.user_tv_change_password:
+				startActivity(PasswordActivity.class);
+				break;
+			case R.id.user_tv_tome:
+				startActivity(ToMeActivity.class);
+				break;
+			case R.id.user_tv_tosd:
+				startActivity(ToSdActivity.class);
+				break;
+			case R.id.user_tv_about:
+				startActivity(AboutActivity.class);
+				break;
+			case R.id.user_tv_help:
+				startActivity(HelpActivity.class);
+				break;
 		}
 	}
-	
+
 	private void startActivity(Class<?> clazz){
 		startActivity(new Intent(this, clazz));
 		overridePendingTransition(R.anim.right_in, R.anim.left_out);
 	}
-	
+
 
 }

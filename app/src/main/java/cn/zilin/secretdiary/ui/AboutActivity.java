@@ -26,9 +26,9 @@ public class AboutActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ����Ϊ�ޱ���
+		// 设置为无标题
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ����Ϊȫ��ģʽ
+		// 设置为全屏模式
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -47,24 +47,24 @@ public class AboutActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+									int position, long id) {
 				AppBean app = (AppBean) parent.getItemAtPosition(position);
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(app.getLink()));
 				intent.setClassName("com.android.browser", "com.android.browser.BrowserActivity");
 				startActivity(intent);
 			}
 		});
-		
+
 		AdUtil.initAd(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.about_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
+			case R.id.about_layout_back:
+				finish();
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
 		}
 	}
 

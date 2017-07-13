@@ -41,27 +41,27 @@ public class ToSdActivity extends Activity implements OnClickListener {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case 0:
-				if (pd == null) {
-					pd = new ProgressDialog(ToSdActivity.this);
-					pd.setMessage("ÕıÔÚµ¼³öÈÕ¼ÇÖĞ...");
-					pd.setCancelable(false);
-				}
-				pd.show();
-				break;
-			case 1:
-				if (pd != null) {
-					pd.dismiss();
-				}
-				Toast.makeText(ToSdActivity.this, "µ¼³öÈÕ¼Ç³É¹¦", 0).show();
-				finish();
-				break;
-			case 2:
-				if (pd != null) {
-					pd.dismiss();
-				}
-				Toast.makeText(ToSdActivity.this, "µ¼³öÈÕ¼ÇÊ§°Ü", 0).show();
-				break;
+				case 0:
+					if (pd == null) {
+						pd = new ProgressDialog(ToSdActivity.this);
+						pd.setMessage("æ­£åœ¨å¯¼å‡ºæ—¥è®°ä¸­...");
+						pd.setCancelable(false);
+					}
+					pd.show();
+					break;
+				case 1:
+					if (pd != null) {
+						pd.dismiss();
+					}
+					Toast.makeText(ToSdActivity.this, "å¯¼å‡ºæ—¥è®°æˆåŠŸ", 0).show();
+					finish();
+					break;
+				case 2:
+					if (pd != null) {
+						pd.dismiss();
+					}
+					Toast.makeText(ToSdActivity.this, "å¯¼å‡ºæ—¥è®°å¤±è´¥", 0).show();
+					break;
 			}
 		}
 
@@ -71,9 +71,9 @@ public class ToSdActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ÉèÖÃÎªÎŞ±êÌâ
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ÉèÖÃÎªÈ«ÆÁÄ£Ê½
+		// è®¾ç½®ä¸ºå…¨å±æ¨¡å¼
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -95,17 +95,17 @@ public class ToSdActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.tosd_layout_back:
-			finish();
-			overridePendingTransition(R.anim.left_in, R.anim.right_out);
-			break;
-		case R.id.tosd_iv_ok:
-			if (PreferencesUtil.checkPassword(this, pwEt.getText().toString())) {
-				saveFile();
-			} else {
-				Toast.makeText(this, "ÃÜÂë²»ÕıÈ·", 0).show();
-			}
-			break;
+			case R.id.tosd_layout_back:
+				finish();
+				overridePendingTransition(R.anim.left_in, R.anim.right_out);
+				break;
+			case R.id.tosd_iv_ok:
+				if (PreferencesUtil.checkPassword(this, pwEt.getText().toString())) {
+					saveFile();
+				} else {
+					Toast.makeText(this, "å¯†ç ä¸æ­£ç¡®", 0).show();
+				}
+				break;
 		}
 	}
 
@@ -154,7 +154,7 @@ public class ToSdActivity extends Activity implements OnClickListener {
 		boolean sdCardExist = Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED);
 		if (!sdCardExist) {
-			Toast.makeText(this, "sd¿¨²»´æÔÚ", 0).show();
+			Toast.makeText(this, "sdå¡ä¸å­˜åœ¨", 0).show();
 			return;
 		}
 
@@ -167,7 +167,7 @@ public class ToSdActivity extends Activity implements OnClickListener {
 		mHandler.sendEmptyMessage(0);
 		new Thread(){
 			public void run() {
-				
+
 				try {
 					saveImg(diaryFile);
 					saveDiary(diaryFile);

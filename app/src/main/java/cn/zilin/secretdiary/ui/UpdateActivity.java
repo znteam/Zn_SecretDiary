@@ -42,9 +42,9 @@ public class UpdateActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃÎªÎŞ±êÌâ
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// ÉèÖÃÎªÈ«ÆÁÄ£Ê½
+		// è®¾ç½®ä¸ºå…¨å±æ¨¡å¼
 		/*
 		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -120,65 +120,65 @@ public class UpdateActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.update_layout_back:
-			back();
-			break;
-		case R.id.update_iv_sign:
+			case R.id.update_layout_back:
+				back();
+				break;
+			case R.id.update_iv_sign:
 
-			if (signIv.isSelected()) {
-				signIv.setSelected(false);
-				Toast.makeText(this, "~O Æ½·²µÄÒ»Ìì O~", 0).show();
-				signStatus = "0";
-			} else {
-				signIv.setSelected(true);
-				Toast.makeText(this, "~O ÖØÒªµÄÒ»Ìì O~", 0).show();
-				signStatus = "1";
-			}
-
-			break;
-		case R.id.update_iv_ok:
-
-			if (checkDiary()) {
-				DiaryBean diary = new DiaryBean();
-				diary.setId(diaryId);
-				diary.setMood(moodPicName);
-				diary.setTitle(titleEt.getText().toString());
-				diary.setContent(contentEt.getText().toString());
-				diary.setTape(null);
-				diary.setSign(signStatus);
-				diary.setTime(oldTime);
-
-				if (new DiaryManage(this).updateDiary(diary)) {
-					Toast.makeText(this, "ĞŞ¸ÄÈÕ¼Ç³É¹¦", 0).show();
-					finish();
+				if (signIv.isSelected()) {
+					signIv.setSelected(false);
+					Toast.makeText(this, "~O å¹³å‡¡çš„ä¸€å¤© O~", 0).show();
+					signStatus = "0";
 				} else {
-					Toast.makeText(this, "ĞŞ¸ÄÊ§°Ü£¬ÇëÖØĞÂ±£´æ", 0).show();
+					signIv.setSelected(true);
+					Toast.makeText(this, "~O é‡è¦çš„ä¸€å¤© O~", 0).show();
+					signStatus = "1";
 				}
-			}
 
-			break;
-		case R.id.update_iv_mood:
-			if (moodLayout.getVisibility() == View.VISIBLE) {
-				moodLayout.setVisibility(View.GONE);
-			} else {
-				moodLayout.setVisibility(View.VISIBLE);
-			}
-			break;
+				break;
+			case R.id.update_iv_ok:
+
+				if (checkDiary()) {
+					DiaryBean diary = new DiaryBean();
+					diary.setId(diaryId);
+					diary.setMood(moodPicName);
+					diary.setTitle(titleEt.getText().toString());
+					diary.setContent(contentEt.getText().toString());
+					diary.setTape(null);
+					diary.setSign(signStatus);
+					diary.setTime(oldTime);
+
+					if (new DiaryManage(this).updateDiary(diary)) {
+						Toast.makeText(this, "ä¿®æ”¹æ—¥è®°æˆåŠŸ", 0).show();
+						finish();
+					} else {
+						Toast.makeText(this, "ä¿®æ”¹å¤±è´¥ï¼Œè¯·é‡æ–°ä¿å­˜", 0).show();
+					}
+				}
+
+				break;
+			case R.id.update_iv_mood:
+				if (moodLayout.getVisibility() == View.VISIBLE) {
+					moodLayout.setVisibility(View.GONE);
+				} else {
+					moodLayout.setVisibility(View.VISIBLE);
+				}
+				break;
 		}
 	}
 
 	private boolean checkDiary() {
 		if (moodPicName == null || "".equals(moodPicName.trim())) {
-			Toast.makeText(this, "Ç×£¬µã»÷ĞÄÇé->Ñ¡ÔñĞÄÇé", 0).show();
+			Toast.makeText(this, "äº²ï¼Œç‚¹å‡»å¿ƒæƒ…->é€‰æ‹©å¿ƒæƒ…", 0).show();
 			return false;
 		} else if ("".equals(titleEt.getText().toString().trim())) {
-			Toast.makeText(this, "Ç×£¬»¹Ã»Ğ´±êÌâ", 0).show();
+			Toast.makeText(this, "äº²ï¼Œè¿˜æ²¡å†™æ ‡é¢˜", 0).show();
 			return false;
 		} else if ("".equals(contentEt.getText().toString().trim())) {
-			Toast.makeText(this, "Ç×£¬¼ÇµÃĞ´ÄÚÈİ", 0).show();
+			Toast.makeText(this, "äº²ï¼Œè®°å¾—å†™å†…å®¹", 0).show();
 			return false;
 		} else if (titleEt.getText().toString().length() > 20) {
-			Toast.makeText(this, "Ç×£¬±êÌâ²»ÄÜ³¬¹ı20¸ö×Ö", 0).show();
+			Toast.makeText(this, "äº²ï¼Œæ ‡é¢˜ä¸èƒ½è¶…è¿‡20ä¸ªå­—", 0).show();
 			return false;
 		}
 		return true;
@@ -204,17 +204,17 @@ public class UpdateActivity extends Activity implements OnClickListener {
 		if (!"".equals(titleEt.getText().toString())
 				|| !"".equals(contentEt.getText().toString())) {
 			new AlertDialog.Builder(this)
-					.setTitle("ÍË³öÌáÊ¾")
-					.setMessage("·ÅÆúĞŞ¸ÄÈÕ¼Ç£¿")
-					.setPositiveButton("È·¶¨",
+					.setTitle("é€€å‡ºæç¤º")
+					.setMessage("æ”¾å¼ƒä¿®æ”¹æ—¥è®°ï¼Ÿ")
+					.setPositiveButton("ç¡®å®š",
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
-										int which) {
+													int which) {
 									UpdateActivity.this.finish();
 									overridePendingTransition(R.anim.left_in, R.anim.right_out);
 								}
-							}).setNegativeButton("È¡Ïû", null).show();
+							}).setNegativeButton("å–æ¶ˆ", null).show();
 		} else {
 			finish();
 			overridePendingTransition(R.anim.left_in, R.anim.right_out);
@@ -231,5 +231,5 @@ public class UpdateActivity extends Activity implements OnClickListener {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
+
 }
