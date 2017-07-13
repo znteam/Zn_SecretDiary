@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="5dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="5dip" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/diary_item_iv_mood"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:padding="5dip"
+                android:scaleType="fitCenter" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/diary_item_tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:paddingTop="5dip"
+                    android:singleLine="true"
+                    android:textColor="#4b300f"
+                    android:textSize="16dip" />
+
+                <TextView
+                    android:id="@+id/diary_item_tv_content"
+                    style="@style/page_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:singleLine="true"
+                    android:textSize="13dip" />
+
+                <TextView
+                    android:id="@+id/diary_item_tv_time"
+                    style="@style/page_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:paddingRight="5dip"
+                    android:singleLine="true"
+                    android:textSize="12dip" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/diary_item_bottom_bg" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/diary_item_iv_sign"
+        android:layout_width="40dip"
+        android:layout_height="22dip" 
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"/>
+
+</RelativeLayout>

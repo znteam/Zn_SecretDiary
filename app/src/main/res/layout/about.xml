@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/user_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/title_bg_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/about_layout_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/title_back"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/cover_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于我们"
+                android:textSize="20dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher2" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            style="@style/cover_text"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text="秘密日记"
+            android:textSize="26dip" />
+
+        <TextView
+            style="@style/cover_text"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="bottom"
+            android:text=" v1.0 "
+            android:textSize="15dip" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dip"
+        android:gravity="center"
+        android:text="made in 李子霖"
+        android:textColor="#88ffffff"
+        android:textSize="15dip" />
+
+    <ListView
+        android:id="@+id/about_lv_app"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="#00000000"
+        android:dividerHeight="0dip"
+        android:fadeScrollbars="false"
+        android:fastScrollEnabled="true"
+        android:listSelector="@drawable/item_pressed"
+        android:cacheColorHint="#00000000" />
+
+</LinearLayout>

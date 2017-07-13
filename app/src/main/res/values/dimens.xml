@@ -1,0 +1,10 @@
+<resources>
+
+    <dimen name="padding_b">30dp</dimen>
+    <dimen name="padding_m">20dp</dimen>
+    <dimen name="padding_ms">15dp</dimen>
+    <dimen name="padding_s">10dp</dimen>
+    <dimen name="padding_ss">5dp</dimen>
+    <dimen name="line_size">0.8dp</dimen>
+
+</resources>

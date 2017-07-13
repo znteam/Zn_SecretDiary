@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <View
+            android:id="@+id/diary_view_view_top"
+            android:layout_width="fill_parent"
+            android:layout_height="5dip" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/diary_view_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dip"
+                android:padding="5dip"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+                <ImageView
+                    android:id="@+id/diary_view_iv_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter" />
+            </RelativeLayout>
+
+            <!--
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="5dip" >
+
+                <ImageView
+                    android:id="@+id/diary_view_iv_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/write_mood_bg" />
+
+                <LinearLayout
+                    android:id="@+id/diary_view_layout_menu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:visibility="gone" >
+
+                    <ImageView
+                        android:id="@+id/diary_view_iv_edit"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/write_mood_bg" />
+
+                    <ImageView
+                        android:id="@+id/diary_view_iv_delete"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/write_mood_bg" />
+
+                    <ImageView
+                        android:id="@+id/diary_view_iv_mark"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/write_mood_bg" />
+
+                    <ImageView
+                        android:id="@+id/diary_view_iv_gone"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/write_mood_bg" />
+                </LinearLayout>
+            </RelativeLayout>
+            -->
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadingEdge="none"
+        android:fadingEdgeLength="0dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="5dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip"
+                android:paddingTop="3dip" >
+
+                <ImageView
+                    android:id="@+id/diary_view_iv_mood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dip"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/diary_view_tv_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:textSize="22dip"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#33330000" />
+
+            <TextView
+                android:id="@+id/diary_view_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:lineSpacingExtra="10dip"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip"
+                android:textColor="#000000"
+                android:textSize="18dip" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/diary_view_tv_page"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+</LinearLayout>

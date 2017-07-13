@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/user_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/title_bg_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/tosd_layout_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/title_back"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/cover_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="导出日记"
+                android:textSize="20dip" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/title_divider" />
+
+        <ImageView
+            android:id="@+id/tosd_iv_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/title_ok"
+            android:padding="10dip"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dip"
+        android:text="日记将保存至sdcard卡 -> diary文件夹里"
+        />
+    
+    <EditText
+        android:id="@+id/tosd_et_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:background="#77000000"
+        android:hint="点击输入密码..."
+        android:padding="10dip"
+        android:password="true"
+        android:singleLine="true"
+        android:textColor="#ffffff" />
+
+</LinearLayout>

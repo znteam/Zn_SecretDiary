@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/user_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/title_bg_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/tome_layout_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/title_back"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/cover_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="意见反馈"
+                android:textSize="20dip" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/title_divider" />
+
+        <ImageView
+            android:id="@+id/tome_iv_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/title_ok"
+            android:padding="10dip"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/adLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    
+    <EditText
+        android:id="@+id/tome_et_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_margin="20dip"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:gravity="left"
+        android:hint="点击输入..."
+        android:textColor="#ffffff" />
+
+</LinearLayout>

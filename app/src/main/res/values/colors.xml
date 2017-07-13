@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="red">#ffff0000</color>
+    <color name="orange">#ffe3432c</color>
+    <color name="white">#ffffffff</color>
+    <color name="path_white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="path_black">#ff333333</color>
+    <color name="lighter_gray">#ffcccccc</color>
+    <color name="light_gray">#ffbbbbbb</color>
+    <color name="med_gray">#ff999999</color>
+    <color name="gray">#ff666666</color>
+    <color name="dark_gray">#ff444444</color>
+    <color name="beige">#fff0ece6</color>
+    <color name="dark_beige">#ffeae3da</color>
+    <color name="tab_bar_blue">#ffd9e6ee</color>
+    <color name="light_light_gray">#ffdddddd</color>
+    <color name="cover_text_shadow">#7f000000</color>
+    <color name="bar_text_shadow">#ff7f1a13</color>
+    <color name="page_text">#ffada9a0</color>
+
+</resources>

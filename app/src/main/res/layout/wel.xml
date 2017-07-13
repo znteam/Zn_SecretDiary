@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/user_bg" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ImageView
+            android:id="@+id/wel_iv_bg"
+            android:layout_width="1280dip"
+            android:layout_height="fill_parent"
+            android:scaleType="fitStart" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/wel_et_password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dip"
+        android:background="#77000000"
+        android:hint="输入密码"
+        android:padding="15dip"
+        android:password="true"
+        android:singleLine="true"
+        android:textColor="#ffffff" />
+
+    <ImageView
+        android:id="@+id/wel_iv_tomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+        android:padding="20dip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wel_tomain" />
+
+</RelativeLayout>
