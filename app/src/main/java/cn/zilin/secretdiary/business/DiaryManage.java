@@ -1,6 +1,7 @@
 package cn.zilin.secretdiary.business;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
@@ -49,10 +50,31 @@ public class DiaryManage {
 		}
 		return false;
 	}
+
+	public boolean insertDiaryList(List<DiaryBean> diaryList){
+		try {
+			diaryDao.insertDiaryList(diaryList);
+			mContext.sendBroadcast(new Intent(DataCommon.INSERT_DIARY_RECEIVED));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	public boolean deleteDiary(DiaryBean diary){
 		try {
 			diaryDao.deleteDiary(diary);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean deleteAllDiary(){
+		try {
+			diaryDao.deleteAllDiary();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

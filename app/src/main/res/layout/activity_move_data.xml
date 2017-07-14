@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/user_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/title_bg_normal"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/move_data_layout_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/title_back"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/cover_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机迁移"
+                android:textSize="20dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dip"
+        android:text="日记将保存至sdcard卡根目录下：sceretdiary.db；\n使用方法：点击导出日记，成功后将sceretdiary.db拷贝到新手机上，并安装秘密日记，点击导入日记。"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dip" >
+
+        <Button
+            android:id="@+id/move_data_btn_output"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="导出日记" />
+
+        <Button
+            android:id="@+id/move_data_btn_input"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="导入日记" />
+    </LinearLayout>
+</LinearLayout>

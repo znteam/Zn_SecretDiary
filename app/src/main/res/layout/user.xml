@@ -116,6 +116,16 @@
                 android:padding="18dip"
                 android:text="关于我们"
                 android:textSize="18dip" />
+
+            <TextView
+                android:id="@+id/user_tv_move"
+                style="@style/cover_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="18dip"
+                android:text="* 手机迁移"
+                android:textSize="18dip" />
         </LinearLayout>
     </ScrollView>
 

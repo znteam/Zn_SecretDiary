@@ -47,6 +47,7 @@ public class UserActivity extends Activity implements OnClickListener {
 		toSdTv.setOnClickListener(this);
 		aboutTv.setOnClickListener(this);
 		helpTv.setOnClickListener(this);
+		findViewById(R.id.user_tv_move).setOnClickListener(this);
 
 		AdUtil.initAd(this);
 	}
@@ -72,6 +73,9 @@ public class UserActivity extends Activity implements OnClickListener {
 				break;
 			case R.id.user_tv_help:
 				startActivity(HelpActivity.class);
+				break;
+			case R.id.user_tv_move:
+				startActivity(MoveDataActivity.class);
 				break;
 		}
 	}

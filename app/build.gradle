@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "cn.zilin.secretdiary.ui.secretdiary"
+        applicationId "cn.zilin.secretdiary.ui"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -22,4 +22,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.3'
 }
