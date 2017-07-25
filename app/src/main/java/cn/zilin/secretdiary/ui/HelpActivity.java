@@ -8,7 +8,6 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import cn.zilin.secretdiary.util.AdUtil;
 
 public class HelpActivity extends Activity implements OnClickListener {
 
@@ -21,14 +20,6 @@ public class HelpActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
 		setContentView(R.layout.help);
 
 		backLayout = (LinearLayout) this.findViewById(R.id.help_layout_back);
@@ -45,7 +36,6 @@ public class HelpActivity extends Activity implements OnClickListener {
 		tv2.setText("\n\n浏览日记功能：\n\n1.左右滑屏，可浏览上一篇/下一篇日记\n2.长按屏幕，可编辑日记（删除、修改、标记）\n3.双指缩小，可退出浏览日记到主页");
 		iv2.setImageResource(R.drawable.help_item2);
 
-		AdUtil.initAd(this);
 	}
 
 	@Override

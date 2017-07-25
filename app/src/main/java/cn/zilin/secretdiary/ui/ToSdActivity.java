@@ -24,7 +24,6 @@ import android.widget.Toast;
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.MoodInstance;
-import cn.zilin.secretdiary.util.AdUtil;
 import cn.zilin.secretdiary.util.MyUtil;
 import cn.zilin.secretdiary.util.PreferencesUtil;
 
@@ -70,16 +69,6 @@ public class ToSdActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		setContentView(R.layout.tosd);
 
 		backLayout = (LinearLayout) this.findViewById(R.id.tosd_layout_back);
@@ -89,7 +78,6 @@ public class ToSdActivity extends Activity implements OnClickListener {
 		backLayout.setOnClickListener(this);
 		okIv.setOnClickListener(this);
 
-		AdUtil.initAd(this);
 	}
 
 	@Override

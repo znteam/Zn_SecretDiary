@@ -12,8 +12,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,11 +20,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +29,6 @@ import java.util.List;
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.BackgroundThread;
-import cn.zilin.secretdiary.common.MoodInstance;
-import cn.zilin.secretdiary.util.AdUtil;
-import cn.zilin.secretdiary.util.FileUtils;
-import cn.zilin.secretdiary.util.MyUtil;
-import cn.zilin.secretdiary.util.PreferencesUtil;
 
 public class MoveDataActivity extends Activity implements OnClickListener {
 

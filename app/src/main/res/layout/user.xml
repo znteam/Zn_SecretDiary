@@ -71,22 +71,6 @@
                 android:text="导出日记"
                 android:textSize="18dip" />
 
-            <!--
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dip"
-        android:text="更换主题" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dip"
-        android:text="整理日记" />
-            -->
-
             <TextView
                 android:id="@+id/user_tv_tome"
                 style="@style/cover_text"
@@ -128,10 +112,5 @@
                 android:textSize="18dip" />
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/adLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

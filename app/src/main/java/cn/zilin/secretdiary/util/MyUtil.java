@@ -6,12 +6,6 @@ import android.os.Environment;
 
 public class MyUtil {
 
-	/**
-	 * 将毫秒值转成yyyy/MM/dd hh:mm:ss格式的时间
-	 * 
-	 * @param time
-	 * @return
-	 */
 	public static String convertTime(String time) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		long tt = -1;
@@ -23,12 +17,6 @@ public class MyUtil {
 		return tt == -1 ? null : format.format(tt);
 	}
 
-	/**
-	 * 半角转换为全角
-	 * 
-	 * @param input
-	 * @return
-	 */
 	public static String toDBC(String input) {
 		char[] c = input.toCharArray();
 		for (int i = 0; i < c.length; i++) {

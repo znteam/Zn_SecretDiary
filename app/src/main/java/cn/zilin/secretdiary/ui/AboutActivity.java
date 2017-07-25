@@ -15,7 +15,6 @@ import android.widget.ListView;
 import cn.zilin.secretdiary.adapter.AppAdapter;
 import cn.zilin.secretdiary.bean.AppBean;
 import cn.zilin.secretdiary.common.AppInstance;
-import cn.zilin.secretdiary.util.AdUtil;
 
 public class AboutActivity extends Activity implements OnClickListener {
 
@@ -25,16 +24,6 @@ public class AboutActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.about);
 
 		backLayout = (LinearLayout) this.findViewById(R.id.about_layout_back);
@@ -55,7 +44,6 @@ public class AboutActivity extends Activity implements OnClickListener {
 			}
 		});
 
-		AdUtil.initAd(this);
 	}
 
 	@Override

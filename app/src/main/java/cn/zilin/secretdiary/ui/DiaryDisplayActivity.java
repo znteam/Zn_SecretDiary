@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.FloatMath;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +23,6 @@ import android.widget.Toast;
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.DataCommon;
-import cn.zilin.secretdiary.util.AdUtil;
 import cn.zilin.secretdiary.util.PreferencesUtil;
 
 public class DiaryDisplayActivity extends Activity {
@@ -47,16 +45,6 @@ public class DiaryDisplayActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
 		if (PreferencesUtil.isHelpStatus(this, PreferencesUtil.DIARYHELPSTATUS)) {
 			final ImageView helpIv = new ImageView(DiaryDisplayActivity.this);
 			helpIv.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
@@ -92,8 +80,6 @@ public class DiaryDisplayActivity extends Activity {
 			parentLayout = (LinearLayout) findViewById(R.id.diary_layout);
 			diaryView = getDiaryView(diary);
 			parentLayout.addView(diaryView, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-
-			AdUtil.initAd(this);
 
 			gesture = new GestureDetector(this, new MyGestureListener());
 

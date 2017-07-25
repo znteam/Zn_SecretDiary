@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -32,17 +33,15 @@ import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.DataCommon;
 import cn.zilin.secretdiary.task.DiaryTask;
 import cn.zilin.secretdiary.ui.MyListView.onFristChangeListener;
-import cn.zilin.secretdiary.util.AdUtil;
 import cn.zilin.secretdiary.util.PreferencesUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private ImageView userIv;
-	private ImageView writeIv;
 	private MyListView contentLv;
 	private RelativeLayout searchLayout;
 	private EditText searchEt;
 	private TextView hiddenTv;
+	private FloatingActionButton writeFab;
 
 	private DiaryAdapter adapter;
 
@@ -53,16 +52,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
 		if(PreferencesUtil.isHelpStatus(this, PreferencesUtil.MAINHELPSTATUS)){
 			final ImageView helpIv = new ImageView(MainActivity.this);
@@ -84,24 +73,21 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private void initMainView() {
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
 		initLayout();
 		registerReceiver();
-		AdUtil.initAd(this);
 	}
 
 	private void initLayout() {
 
-		userIv = (ImageView) this.findViewById(R.id.main_iv_user);
-		writeIv = (ImageView) this.findViewById(R.id.main_iv_write);
+		writeFab = (FloatingActionButton) this.findViewById(R.id.main_fab_write);
 		contentLv = (MyListView) this.findViewById(R.id.main_lv_content);
 		searchLayout = (RelativeLayout) this
 				.findViewById(R.id.main_layout_search);
 		searchEt = (EditText) this.findViewById(R.id.main_et_search);
 		hiddenTv = (TextView) this.findViewById(R.id.main_tv_hidden);
 
-		userIv.setOnClickListener(this);
-		writeIv.setOnClickListener(this);
+		writeFab.setOnClickListener(this);
 		hiddenTv.setOnClickListener(this);
 
 		adapter = new DiaryAdapter(this, R.layout.diary_item);
@@ -201,7 +187,7 @@ public class MainActivity extends Activity implements OnClickListener {
 								.deleteDiary(diary)) {
 							DataCommon.diaryList.remove(diary);
 							adapter.remove(diary);
-							Toast.makeText(MainActivity.this, "删除成功", 0).show();
+							Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
 
 						} else {
 							Toast.makeText(
@@ -246,13 +232,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.main_iv_user:
-				startActivity(new Intent(this, UserActivity.class));
-				overridePendingTransition(R.anim.right_in, R.anim.left_out);
-				break;
-			case R.id.main_iv_write:
+			case R.id.main_fab_write:
 				startActivity(new Intent(this, WriteActivity.class));
-				overridePendingTransition(R.anim.right_in, R.anim.left_out);
 				break;
 			case R.id.main_tv_hidden:
 				showSearchView(false);

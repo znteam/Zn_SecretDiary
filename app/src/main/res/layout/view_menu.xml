@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/menu_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/menu_head_iv_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fitsSystemWindows="true"
+                android:layout_marginLeft="25dp"  />
+
+        </FrameLayout>
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/menu_item_layout"
+            android:layout_gravity="start">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/user_tv_change_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="修改密码"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/user_tv_tosd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="导出日记"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/user_tv_tome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="意见反馈"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/user_tv_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="帮助中心"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/user_tv_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="关于我们"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/user_tv_move"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="18dip"
+                    android:text="* 手机迁移"
+                    android:textSize="18dip" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
