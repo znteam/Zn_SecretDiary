@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,72 +41,44 @@ import cn.zilin.secretdiary.task.DiaryTask;
 import cn.zilin.secretdiary.ui.MyListView.onFristChangeListener;
 import cn.zilin.secretdiary.util.PreferencesUtil;
 
+import static cn.zilin.secretdiary.ui.R.layout.diary;
+
 public class MainActivity extends Activity implements OnClickListener {
 
 	private RecyclerView contentRv;
 	private FloatingActionButton writeFab;
-
 	private DiaryAdapter adapter;
-
 	private DBBroadCastReceiver dbReceiver;
-
 	private long exitTime = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if(PreferencesUtil.isHelpStatus(this, PreferencesUtil.MAINHELPSTATUS)){
-			final ImageView helpIv = new ImageView(MainActivity.this);
-			helpIv.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-			helpIv.setImageResource(R.drawable.help_item1);
-			helpIv.setScaleType(ScaleType.FIT_XY);
-			helpIv.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					helpIv.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.help_anim));
-					initMainView();
-					PreferencesUtil.saveHelpStatus(MainActivity.this, PreferencesUtil.MAINHELPSTATUS, "ok");
-				}
-			});
-			setContentView(helpIv);
-		}else{
-			initMainView();
-		}
-	}
-
-	private void initMainView() {
 		setContentView(R.layout.activity_main);
 		initLayout();
 		registerReceiver();
 	}
 
 	private void initLayout() {
-
 		writeFab = (FloatingActionButton) this.findViewById(R.id.main_fab_write);
 		contentRv = (RecyclerView) this.findViewById(R.id.main_rv_content);
 
 		writeFab.setOnClickListener(this);
 
-		adapter = new DiaryAdapter();
-		contentRv.setAdapter(adapter);
-		initData();
-		/*contentLv.setOnItemClickListener(new OnItemClickListener() {
-
+		adapter = new DiaryAdapter(new DiaryAdapter.IDiaryListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-									int position, long id) {
-				DiaryBean diary = (DiaryBean) parent
-						.getItemAtPosition(position);
+			public void onClick(DiaryBean bean, int pos) {
 				Intent intent = new Intent(MainActivity.this,
 						DiaryDisplayActivity.class);
-				intent.putExtra("index", position);
+				intent.putExtra("index", pos);
 				intent.putExtra("diary", diary);
-				view.startAnimation(AnimationUtils.loadAnimation(
-						MainActivity.this, R.anim.scale_big));
 				startActivity(intent);
 			}
-		});*/
+		});
+		contentRv.setAdapter(adapter);
+		contentRv.setLayoutManager(new LinearLayoutManager(this));
+		initData();
 
 		/*contentLv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
@@ -144,25 +117,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 		});*/
 
-
-		/*searchEt.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-									  int count) {
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-										  int after) {
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				new DiaryTask(MainActivity.this, adapter).execute(searchEt
-						.getText().toString().trim());
-			}
-		});*/
 	}
 
 	private void initData() {

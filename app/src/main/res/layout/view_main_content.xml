@@ -19,7 +19,7 @@
             android:drawableLeft="@drawable/ic_menu"
             android:drawablePadding="@dimen/padding_m"
             android:padding="@dimen/padding_m"
-            android:text="@string/appname"
+            android:text="@string/app_name"
             android:textSize="@dimen/top_title_size" />
 
     </android.support.design.widget.AppBarLayout>

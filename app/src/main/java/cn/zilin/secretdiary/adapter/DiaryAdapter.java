@@ -17,10 +17,15 @@ import cn.zilin.secretdiary.ui.ZnApp;
 import cn.zilin.secretdiary.util.ImageUtil;
 import cn.zilin.secretdiary.util.MyUtil;
 
-public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder> {
 
     private List<DiaryBean> dataList;
     private LayoutInflater inflater;
+    private IDiaryListener idl;
+
+    public DiaryAdapter(IDiaryListener idl) {
+        this.idl = idl;
+    }
 
     public void setData(List<DiaryBean> addList) {
         if (addList != null) {
@@ -30,7 +35,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
@@ -39,12 +44,8 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holderbase, final int position) {
-        Log.i("zning", ">>>" + position);
-        final DiaryAdapter.MyViewHolder holder = (DiaryAdapter.MyViewHolder) holderbase;
-        DiaryBean diary = getBeanByPosition(position);
-        Log.i("zning", ">>>" + diary.getId());
-
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final DiaryBean diary = getBeanByPosition(position);
         if (diary == null) {
             return;
         }
@@ -58,6 +59,14 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.titleTv.setText(diary.getTitle());
         holder.contentTv.setText("· " + diary.getContent());
         holder.timeTv.setText(MyUtil.convertTime(diary.getTime()));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (idl != null) {
+                    idl.onClick(diary, position);
+                }
+            }
+        });
     }
 
     private DiaryBean getBeanByPosition(int position) {
@@ -91,5 +100,9 @@ public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             timeTv = (TextView) view
                     .findViewById(R.id.diary_item_tv_time);
         }
+    }
+
+    public interface IDiaryListener{
+        void onClick(DiaryBean bean, int pos);
     }
 }

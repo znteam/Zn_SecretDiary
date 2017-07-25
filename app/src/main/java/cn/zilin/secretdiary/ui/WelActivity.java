@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,7 +62,27 @@ public class WelActivity extends Activity implements OnClickListener {
 		bgIv.setImageBitmap(ImageUtil.getAssetImg(this, WelBgInstance
 				.getInstance().getRandomBg()));
 		toMainIv.setOnClickListener(this);
+		passwordEt.addTextChangedListener(new TextWatcher() {
 
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+									  int count) {
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+										  int after) {
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (PreferencesUtil.checkPassword(ZnApp.getAppContext(), passwordEt.getText().toString())) {
+					startActivity(new Intent(ZnApp.getAppContext(), MainActivity.class));
+					overridePendingTransition(R.anim.down_in, R.anim.up_out);
+					finish();
+				}
+			}
+		});
 	}
 
 	private void initBg() {
@@ -120,10 +142,10 @@ public class WelActivity extends Activity implements OnClickListener {
 	private void goMain() {
 		if (passwordEt.getText() == null
 				|| "".equals(passwordEt.getText().toString().trim())) {
-			Toast.makeText(this, "请输入密码", 0).show();
+			ToastUtils.toToast("请输入密码");
 		} else if (!PreferencesUtil.checkPassword(this, passwordEt.getText()
 				.toString())) {
-			Toast.makeText(this, "密码不正确", 0).show();
+			ToastUtils.toToast("密码不正确");
 		} else {
 			startActivity(new Intent(this, MainActivity.class));
 			overridePendingTransition(R.anim.down_in, R.anim.up_out);

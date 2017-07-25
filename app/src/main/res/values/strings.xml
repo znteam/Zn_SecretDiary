@@ -3,5 +3,4 @@
     <string name="app_name">Secret Diary</string>
     <string name="title" translatable="false">标题</string>
     <string name="note" translatable="false">记事</string>
-    <string name="appname">秘密日记</string>
 </resources>
