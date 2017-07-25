@@ -1,75 +1,95 @@
 package cn.zilin.secretdiary.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
+
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.ui.R;
+import cn.zilin.secretdiary.ui.ZnApp;
 import cn.zilin.secretdiary.util.ImageUtil;
 import cn.zilin.secretdiary.util.MyUtil;
 
-public class DiaryAdapter extends ArrayAdapter<DiaryBean> {
+public class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-	private LayoutInflater inflater;
-	private int itemId;
+    private List<DiaryBean> dataList;
+    private LayoutInflater inflater;
 
-	public DiaryAdapter(Context context, int textViewResourceId) {
-		super(context, textViewResourceId);
-		inflater = LayoutInflater.from(context);
-		this.itemId = textViewResourceId;
-	}
+    public void setData(List<DiaryBean> addList) {
+        if (addList != null) {
+            this.dataList = addList;
+            notifyDataSetChanged();
+        }
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (inflater == null) {
+            inflater = LayoutInflater.from(parent.getContext());
+        }
+        View view = inflater.inflate(R.layout.diary_item, parent, false);
+        return new MyViewHolder(view);
+    }
 
-		ViewHolder holder;
+    @Override
+    public void onBindViewHolder(final RecyclerView.ViewHolder holderbase, final int position) {
+        Log.i("zning", ">>>" + position);
+        final DiaryAdapter.MyViewHolder holder = (DiaryAdapter.MyViewHolder) holderbase;
+        DiaryBean diary = getBeanByPosition(position);
+        Log.i("zning", ">>>" + diary.getId());
 
-		if (convertView == null) {
-			convertView = inflater.inflate(itemId, null);
+        if (diary == null) {
+            return;
+        }
 
-			holder = new ViewHolder();
-			holder.signIv = (ImageView) convertView
-					.findViewById(R.id.diary_item_iv_sign);
-			holder.moodIv = (ImageView) convertView
-					.findViewById(R.id.diary_item_iv_mood);
-			holder.titleTv = (TextView) convertView
-					.findViewById(R.id.diary_item_tv_title);
-			holder.contentTv = (TextView) convertView
-					.findViewById(R.id.diary_item_tv_content);
-			holder.timeTv = (TextView) convertView
-					.findViewById(R.id.diary_item_tv_time);
+        if (TextUtils.equals(diary.getSign(), "1")) {
+            holder.signIv.setImageResource(R.drawable.diary_important);
+        } else {
+            holder.signIv.setImageResource(R.drawable.diary_normal);
+        }
+        holder.moodIv.setImageBitmap(ImageUtil.getAssetImg(ZnApp.getAppContext(), diary.getMood()));
+        holder.titleTv.setText(diary.getTitle());
+        holder.contentTv.setText("· " + diary.getContent());
+        holder.timeTv.setText(MyUtil.convertTime(diary.getTime()));
+    }
 
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+    private DiaryBean getBeanByPosition(int position) {
+        try {
+            return dataList.get(position);
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
-		final DiaryBean diary = getItem(position);
+    @Override
+    public int getItemCount() {
+        return dataList == null ? 0 : dataList.size();
+    }
 
-		if(diary.getSign() != null && "1".equals(diary.getSign())){
-			holder.signIv.setImageResource(R.drawable.diary_important);
-		}else{
-			holder.signIv.setImageResource(R.drawable.diary_normal);
-		}
-		holder.moodIv.setImageBitmap(ImageUtil.getAssetImg(getContext(),diary.getMood()));
-		holder.titleTv.setText(diary.getTitle());
-		holder.contentTv.setText("· " + diary.getContent());
-		holder.timeTv.setText(MyUtil.convertTime(diary.getTime()));
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
-		return convertView;
-	}
+        private ImageView signIv, moodIv;
+        private TextView titleTv, contentTv, timeTv;
 
-	class ViewHolder {
-		ImageView moodIv;
-		TextView titleTv;
-		TextView contentTv;
-		ImageView signIv;
-		ImageView tapeIv;
-		TextView timeTv;
-	}
-
+        public MyViewHolder(View view) {
+            super(view);
+            signIv = (ImageView) view
+                    .findViewById(R.id.diary_item_iv_sign);
+            moodIv = (ImageView) view
+                    .findViewById(R.id.diary_item_iv_mood);
+            titleTv = (TextView) view
+                    .findViewById(R.id.diary_item_tv_title);
+            contentTv = (TextView) view
+                    .findViewById(R.id.diary_item_tv_content);
+            timeTv = (TextView) view
+                    .findViewById(R.id.diary_item_tv_time);
+        }
+    }
 }

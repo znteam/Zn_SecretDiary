@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -27,9 +28,13 @@ import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import cn.zilin.secretdiary.adapter.DiaryAdapter;
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
+import cn.zilin.secretdiary.common.BackgroundThread;
 import cn.zilin.secretdiary.common.DataCommon;
 import cn.zilin.secretdiary.task.DiaryTask;
 import cn.zilin.secretdiary.ui.MyListView.onFristChangeListener;
@@ -37,10 +42,7 @@ import cn.zilin.secretdiary.util.PreferencesUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	private MyListView contentLv;
-	private RelativeLayout searchLayout;
-	private EditText searchEt;
-	private TextView hiddenTv;
+	private RecyclerView contentRv;
 	private FloatingActionButton writeFab;
 
 	private DiaryAdapter adapter;
@@ -81,19 +83,14 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void initLayout() {
 
 		writeFab = (FloatingActionButton) this.findViewById(R.id.main_fab_write);
-		contentLv = (MyListView) this.findViewById(R.id.main_lv_content);
-		searchLayout = (RelativeLayout) this
-				.findViewById(R.id.main_layout_search);
-		searchEt = (EditText) this.findViewById(R.id.main_et_search);
-		hiddenTv = (TextView) this.findViewById(R.id.main_tv_hidden);
+		contentRv = (RecyclerView) this.findViewById(R.id.main_rv_content);
 
 		writeFab.setOnClickListener(this);
-		hiddenTv.setOnClickListener(this);
 
-		adapter = new DiaryAdapter(this, R.layout.diary_item);
-		contentLv.setAdapter(adapter);
-
-		contentLv.setOnItemClickListener(new OnItemClickListener() {
+		adapter = new DiaryAdapter();
+		contentRv.setAdapter(adapter);
+		initData();
+		/*contentLv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -108,9 +105,9 @@ public class MainActivity extends Activity implements OnClickListener {
 						MainActivity.this, R.anim.scale_big));
 				startActivity(intent);
 			}
-		});
+		});*/
 
-		contentLv.setOnItemLongClickListener(new OnItemLongClickListener() {
+		/*contentLv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
@@ -145,18 +142,10 @@ public class MainActivity extends Activity implements OnClickListener {
 								}).show();
 				return true;
 			}
-		});
+		});*/
 
-		new DiaryTask(this, adapter).execute("");
 
-		contentLv.setOnFristChangeListener(new onFristChangeListener() {
-			@Override
-			public void update() {
-				showSearchView();
-			}
-		});
-
-		searchEt.addTextChangedListener(new TextWatcher() {
+		/*searchEt.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -173,6 +162,22 @@ public class MainActivity extends Activity implements OnClickListener {
 				new DiaryTask(MainActivity.this, adapter).execute(searchEt
 						.getText().toString().trim());
 			}
+		});*/
+	}
+
+	private void initData() {
+		BackgroundThread.post(new Runnable() {
+			@Override
+			public void run() {
+				DiaryManage diaryManage = new DiaryManage(ZnApp.getAppContext());
+				final ArrayList<DiaryBean> diaryList = diaryManage.selectAllDiary();
+				ZnApp.getMainThreadHandler().post(new Runnable() {
+					@Override
+					public void run() {
+						adapter.setData(diaryList);
+					}
+				});
+			}
 		});
 	}
 
@@ -186,35 +191,18 @@ public class MainActivity extends Activity implements OnClickListener {
 								MainActivity.this)
 								.deleteDiary(diary)) {
 							DataCommon.diaryList.remove(diary);
-							adapter.remove(diary);
+							//adapter.remove(diary);
 							Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
 
 						} else {
 							Toast.makeText(
 									MainActivity.this,
-									"删除失败", 0).show();
+									"删除失败", Toast.LENGTH_SHORT).show();
 						}
 					}
 				}).show();
 	}
 
-	private void showSearchView() {
-		if (searchLayout.getVisibility() == View.VISIBLE) {
-			showSearchView(false);
-		} else {
-			showSearchView(true);
-		}
-	}
-
-	private void showSearchView(boolean flag) {
-		if (flag) {
-			searchLayout.setVisibility(View.VISIBLE);
-		} else {
-			searchLayout.setVisibility(View.GONE);
-			if (!"".equals(searchEt.getText().toString().trim()))
-				searchEt.setText("");
-		}
-	}
 
 	private void registerReceiver() {
 		dbReceiver = new DBBroadCastReceiver();
@@ -235,14 +223,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			case R.id.main_fab_write:
 				startActivity(new Intent(this, WriteActivity.class));
 				break;
-			case R.id.main_tv_hidden:
-				showSearchView(false);
-				break;
 		}
 	}
 
 	private void updateData() {
-		new DiaryTask(MainActivity.this, adapter).execute("");
+		//new DiaryTask(MainActivity.this, adapter).execute("");
 	}
 
 	private class DBBroadCastReceiver extends BroadcastReceiver {
@@ -265,10 +250,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				finish();
 			}
 			return true;
-
-		} else if (keyCode == KeyEvent.KEYCODE_MENU
-				|| keyCode == KeyEvent.KEYCODE_SEARCH) {
-			showSearchView();
 		}
 		return super.onKeyDown(keyCode, event);
 	}
