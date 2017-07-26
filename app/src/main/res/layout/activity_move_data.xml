@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/user_bg"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorThemePrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        android:background="@drawable/title_bg_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorThemePrimary"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/move_data_layout_back"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:background="@drawable/title_back"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                style="@style/cover_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="手机迁移"
-                android:textSize="20dip" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/move_data_tv_back"
+            style="@style/cover_text"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="@dimen/padding_m"
+            android:padding="@dimen/padding_m"
+            android:text="@string/move_data"
+            android:textSize="@dimen/top_title_size" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dip"
-        android:text="日记将保存至sdcard卡根目录下：sceretdiary.db；\n使用方法：点击导出日记，成功后将sceretdiary.db拷贝到新手机上，并安装秘密日记，点击导入日记。"
-        />
-
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dip" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/defaultBg"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/move_data_btn_output"
-            android:layout_width="0dip"
+        <TextView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="导出日记" />
+            android:layout_margin="15dip"
+            android:text="日记将保存至sdcard卡根目录下：sceretdiary.db；\n使用方法：点击导出日记，成功后将sceretdiary.db拷贝到新手机上，并安装秘密日记，点击导入日记。" />
 
-        <Button
-            android:id="@+id/move_data_btn_input"
-            android:layout_width="0dip"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="导入日记" />
+            android:padding="15dip">
+
+            <Button
+                android:id="@+id/move_data_btn_output"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="导出日记" />
+
+            <Button
+                android:id="@+id/move_data_btn_input"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="导入日记" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

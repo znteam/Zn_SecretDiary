@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private RecyclerView contentRv;
 	private FloatingActionButton writeFab;
-	private TextView pwdMenuTv, toMeMenuTv;
+	private TextView pwdMenuTv, toMeMenuTv, moveDataMenuTv;
 	private DrawerLayout rootDrawerLayout;
 	private final int DRAWER_GRAVITY_COMPAT = GravityCompat.START;
 
@@ -56,6 +56,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		contentRv = (RecyclerView) this.findViewById(R.id.main_rv_content);
 		pwdMenuTv = (TextView) this.findViewById(R.id.menu_tv_pwd);
 		toMeMenuTv = (TextView) this.findViewById(R.id.menu_tv_tome);
+		moveDataMenuTv = (TextView) this.findViewById(R.id.menu_tv_move);
 		rootDrawerLayout = (DrawerLayout) findViewById(R.id.main_dl_root);
 
 		adapter = new DiaryAdapter(new DiaryAdapter.IDiaryListener() {
@@ -103,7 +104,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		contentRv.setAdapter(adapter);
 		contentRv.setLayoutManager(new LinearLayoutManager(this));
 
-		initListener(writeFab, pwdMenuTv, toMeMenuTv);
+		initListener(writeFab, pwdMenuTv, toMeMenuTv, moveDataMenuTv);
 		initData();
 	}
 

@@ -10,25 +10,24 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class ToMeActivity extends Activity implements OnClickListener {
 
-	private LinearLayout backLayout;
+	private TextView backTv;
 	private ImageView okIv;
 	private EditText contentEt;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		setContentView(R.layout.tome);
 
-		backLayout = (LinearLayout) this.findViewById(R.id.tome_layout_back);
+		backTv = (TextView) this.findViewById(R.id.tome_tv_back);
 		okIv = (ImageView) this.findViewById(R.id.tome_iv_ok);
 		contentEt = (EditText) this.findViewById(R.id.tome_et_content);
 
-		backLayout.setOnClickListener(this);
+		backTv.setOnClickListener(this);
 		okIv.setOnClickListener(this);
 
 	}
@@ -36,7 +35,7 @@ public class ToMeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.tome_layout_back:
+			case R.id.tome_tv_back:
 				finish();
 				overridePendingTransition(R.anim.left_in, R.anim.right_out);
 				break;

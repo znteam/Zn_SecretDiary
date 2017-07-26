@@ -2,56 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/content_bg"
-    android:orientation="vertical" >
+    android:background="@color/colorThemePrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:background="@drawable/title_bg_normal"
+        android:layout_height="wrap_content"
+        android:background="@color/colorThemePrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/write_layout_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="写日记"
-                android:gravity="center"
-                android:drawableLeft="@drawable/title_back"
-                android:textSize="20dip" />
-        </LinearLayout>
-
-        <View
+        <TextView
+            android:id="@+id/write_tv_back"
+            style="@style/cover_text"
             android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="match_parent"
-            android:background="@drawable/title_divider" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="@dimen/padding_m"
+            android:padding="@dimen/padding_m"
+            android:text="@string/write_diary"
+            android:textSize="@dimen/top_title_size" />
 
         <ImageView
             android:id="@+id/write_iv_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:background="@drawable/title_sign"
-            android:padding="10dip"
+            android:src="@drawable/title_sign"
+            android:padding="@dimen/padding_m"
             android:scaleType="fitCenter" />
 
     </LinearLayout>

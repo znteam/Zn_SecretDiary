@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ import cn.zilin.secretdiary.common.BackgroundThread;
 
 public class MoveDataActivity extends Activity implements OnClickListener {
 
-    private LinearLayout backLayout;
+    private TextView backTv;
     private Button inputBtn, outputBtn;
 
     private ProgressDialog pd;
@@ -54,25 +55,25 @@ public class MoveDataActivity extends Activity implements OnClickListener {
                     if (pd != null) {
                         pd.dismiss();
                     }
-                    Toast.makeText(MoveDataActivity.this, "导出成功", 0).show();
+                    ToastUtils.toToast("导出成功");
                     break;
                 case 2:
                     if (pd != null) {
                         pd.dismiss();
                     }
-                    Toast.makeText(MoveDataActivity.this, "导出失败", 0).show();
+                    ToastUtils.toToast("导出失败");
                     break;
                 case 3:
                     if (pd != null) {
                         pd.dismiss();
                     }
-                    Toast.makeText(MoveDataActivity.this, "导入成功", 0).show();
+                    ToastUtils.toToast("导入成功");
                     break;
                 case 4:
                     if (pd != null) {
                         pd.dismiss();
                     }
-                    Toast.makeText(MoveDataActivity.this, "导入失败", 0).show();
+                    ToastUtils.toToast("导入失败");
                     break;
             }
         }
@@ -82,23 +83,13 @@ public class MoveDataActivity extends Activity implements OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // 设置为无标题
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 设置为全屏模式
-        /*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-        getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(R.layout.activity_move_data);
 
-        backLayout = (LinearLayout) this.findViewById(R.id.move_data_layout_back);
+        backTv = (TextView) this.findViewById(R.id.move_data_tv_back);
         inputBtn = (Button) this.findViewById(R.id.move_data_btn_input);
         outputBtn = (Button) this.findViewById(R.id.move_data_btn_output);
 
-        backLayout.setOnClickListener(this);
+        backTv.setOnClickListener(this);
         inputBtn.setOnClickListener(this);
         outputBtn.setOnClickListener(this);
     }
@@ -106,7 +97,7 @@ public class MoveDataActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.move_data_layout_back:
+            case R.id.move_data_tv_back:
                 finish();
                 overridePendingTransition(R.anim.left_in, R.anim.right_out);
                 break;

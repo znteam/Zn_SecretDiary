@@ -5,10 +5,10 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "cn.zilin.secretdiary.ui"
-        minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 2
-        versionName "1.1"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 120
+        versionName "1.2.0"
     }
     buildTypes {
         release {
