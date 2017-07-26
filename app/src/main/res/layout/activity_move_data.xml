@@ -22,7 +22,7 @@
             android:drawableLeft="@drawable/ic_back"
             android:drawablePadding="@dimen/padding_m"
             android:padding="@dimen/padding_m"
-            android:text="@string/move_data"
+            android:text="@string/data_move"
             android:textSize="@dimen/top_title_size" />
     </LinearLayout>
 

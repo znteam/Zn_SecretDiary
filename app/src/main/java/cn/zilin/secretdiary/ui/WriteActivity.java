@@ -41,7 +41,7 @@ public class WriteActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_write);
+		setContentView(R.layout.write);
 		backTv = (TextView) this.findViewById(R.id.write_tv_back);
 		okIv = (ImageView) this.findViewById(R.id.write_iv_ok);
 		signIv = (ImageView) this.findViewById(R.id.write_iv_sign);

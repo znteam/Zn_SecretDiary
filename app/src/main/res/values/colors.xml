@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorThemePrimary">#e91e63</color>
-    <color name="colorThemePrimaryDark">#e91e63</color>
-    <color name="colorThemeAccent">#e91e63</color>
+    <color name="colorThemePrimary">#00bbd2</color>
+    <color name="colorThemePrimaryDark">#00bbd2</color>
+    <color name="colorThemeAccent">#00bbd2</color>
     <color name="colorTransparent">#00000000</color>
     <color name="defaultBg">#e2e2e2</color>
     <color name="white">#ffffffff</color>

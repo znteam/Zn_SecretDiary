@@ -3,8 +3,9 @@
     <string name="app_name">Secret Diary</string>
     <string name="title" translatable="false">标题</string>
     <string name="note" translatable="false">记事</string>
-    <string name="change_pwd">修改密码</string>
-    <string name="feedback">意见反馈</string>
-    <string name="move_data">手机迁移</string>
-    <string name="write_diary">写日记</string>
+    <string name="change_pwd" translatable="false">修改密码</string>
+    <string name="feedback" translatable="false">意见反馈</string>
+    <string name="write_diary" translatable="false">写日记</string>
+    <string name="change_diary" translatable="false">修改日记</string>
+    <string name="data_move" translatable="false">数据迁移</string>
 </resources>

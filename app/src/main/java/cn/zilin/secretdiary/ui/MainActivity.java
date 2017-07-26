@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements OnClickListener {
 				Intent intent = new Intent(MainActivity.this,
 						DiaryDisplayActivity.class);
 				intent.putExtra("index", pos);
-				intent.putExtra("diary", diary);
+				intent.putExtra("diary", bean);
 				intent.putParcelableArrayListExtra("diaryList", adapter.getDataList());
 				startActivity(intent);
 			}
@@ -191,14 +191,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		overridePendingTransition(R.anim.right_in, R.anim.left_out);
 	}
 
-	private void updateData() {
-		//new DiaryTask(MainActivity.this, adapter).execute("");
-	}
-
 	private class DBBroadCastReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			updateData();
+			initData();
 		}
 	}
 
@@ -216,6 +212,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 			return true;
 		}
+
+
 		return super.onKeyDown(keyCode, event);
 	}
 

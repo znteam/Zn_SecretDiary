@@ -48,21 +48,21 @@
                     style="@style/main_menu_item_tv"
                     android:drawableLeft="@drawable/ic_notification"
                     android:drawablePadding="@dimen/padding_m"
-                    android:text="修改密码" />
+                    android:text="@string/change_pwd" />
 
                 <TextView
                     android:id="@+id/menu_tv_tome"
                     style="@style/main_menu_item_tv"
                     android:drawableLeft="@drawable/ic_notification"
                     android:drawablePadding="@dimen/padding_m"
-                    android:text="意见反馈" />
+                    android:text="@string/feedback" />
 
                 <TextView
                     android:id="@+id/menu_tv_move"
                     style="@style/main_menu_item_tv"
                     android:drawableLeft="@drawable/ic_notification"
                     android:drawablePadding="@dimen/padding_m"
-                    android:text="* 手机迁移" />
+                    android:text="@string/data_move" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 

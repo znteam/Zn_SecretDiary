@@ -1,82 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/content_bg"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorThemePrimary"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        android:background="@drawable/title_bg_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorThemePrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/update_layout_back"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:orientation="horizontal" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:background="@drawable/title_back"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                style="@style/cover_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="修改日记"
-                android:textSize="20dip" />
-        </LinearLayout>
-
-        <View
+        <TextView
+            android:id="@+id/update_tv_back"
+            style="@style/cover_text"
             android:layout_width="0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" />
-        
-        <View
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:background="@drawable/title_divider" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="@dimen/padding_m"
+            android:padding="@dimen/padding_m"
+            android:text="@string/change_diary"
+            android:textSize="@dimen/top_title_size" />
 
         <ImageView
             android:id="@+id/update_iv_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:background="@drawable/title_sign"
-            android:padding="10dip"
+            android:src="@drawable/title_sign"
+            android:padding="@dimen/padding_m"
             android:scaleType="fitCenter" />
-
-        <View
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:background="@drawable/title_divider" />
-
         <ImageView
             android:id="@+id/update_iv_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:background="@drawable/title_ok"
-            android:padding="10dip"
+            android:src="@drawable/title_ok"
+            android:padding="@dimen/padding_m"
             android:scaleType="fitCenter" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/defaultBg"
         android:orientation="vertical" >
 
         <HorizontalScrollView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#333333"
@@ -93,7 +66,7 @@
         </HorizontalScrollView>
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -111,7 +84,7 @@
 
             <EditText
                 android:id="@+id/update_et_title"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:hint="点击输入标题"
@@ -122,19 +95,19 @@
         </LinearLayout>
 
         <View
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_marginLeft="20dip"
             android:layout_marginRight="20dip"
             android:background="#33330000" />
 
         <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
             <EditText
                 android:id="@+id/update_et_content"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:gravity="top"
@@ -149,7 +122,7 @@
 
         <!--
 		    <RelativeLayout
-		        android:layout_width="fill_parent"
+		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content" >
 		
 		        <ImageView
@@ -164,7 +137,7 @@
 		
 		        <TextView
 		            android:id="@+id/update_tv_tape"
-		            android:layout_width="fill_parent"
+		            android:layout_width="match_parent"
 		            android:layout_height="50dip"
 		            android:layout_centerInParent="true"
 		            android:background="#eeeeee"

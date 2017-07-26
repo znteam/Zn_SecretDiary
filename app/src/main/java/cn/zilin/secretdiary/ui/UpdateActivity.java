@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
@@ -25,7 +26,7 @@ import cn.zilin.secretdiary.util.ImageUtil;
 
 public class UpdateActivity extends Activity implements OnClickListener {
 
-	private LinearLayout backLayout;
+	private TextView backTv;
 	private ImageView okIv;
 	private ImageView moodIv;
 	private ImageView signIv;
@@ -42,20 +43,8 @@ public class UpdateActivity extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// 设置为无标题
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		// 设置为全屏模式
-		/*
-		 * getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		 * WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		 */
-
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 		setContentView(R.layout.update);
-
 		init();
-
 		DiaryBean diary = getIntent().getParcelableExtra("diary");
 		if (diary != null){
 			initData(diary);
@@ -67,7 +56,7 @@ public class UpdateActivity extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		backLayout = (LinearLayout) this.findViewById(R.id.update_layout_back);
+		backTv = (TextView) this.findViewById(R.id.update_tv_back);
 		okIv = (ImageView) this.findViewById(R.id.update_iv_ok);
 		signIv = (ImageView) this.findViewById(R.id.update_iv_sign);
 		moodIv = (ImageView) this.findViewById(R.id.update_iv_mood);
@@ -77,7 +66,7 @@ public class UpdateActivity extends Activity implements OnClickListener {
 
 		initMoodLayout();
 
-		backLayout.setOnClickListener(this);
+		backTv.setOnClickListener(this);
 		okIv.setOnClickListener(this);
 		signIv.setOnClickListener(this);
 		moodIv.setOnClickListener(this);
@@ -120,18 +109,18 @@ public class UpdateActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.update_layout_back:
+			case R.id.update_tv_back:
 				back();
 				break;
 			case R.id.update_iv_sign:
 
 				if (signIv.isSelected()) {
 					signIv.setSelected(false);
-					Toast.makeText(this, "~O 平凡的一天 O~", 0).show();
+					ToastUtils.toToast("~O 平凡的一天 O~");
 					signStatus = "0";
 				} else {
 					signIv.setSelected(true);
-					Toast.makeText(this, "~O 重要的一天 O~", 0).show();
+					ToastUtils.toToast("~O 重要的一天 O~");
 					signStatus = "1";
 				}
 
@@ -149,10 +138,10 @@ public class UpdateActivity extends Activity implements OnClickListener {
 					diary.setTime(oldTime);
 
 					if (new DiaryManage(this).updateDiary(diary)) {
-						Toast.makeText(this, "修改日记成功", 0).show();
+						ToastUtils.toToast("修改日记成功");
 						finish();
 					} else {
-						Toast.makeText(this, "修改失败，请重新保存", 0).show();
+						ToastUtils.toToast("修改失败，请重新保存");
 					}
 				}
 
@@ -169,16 +158,16 @@ public class UpdateActivity extends Activity implements OnClickListener {
 
 	private boolean checkDiary() {
 		if (moodPicName == null || "".equals(moodPicName.trim())) {
-			Toast.makeText(this, "亲，点击心情->选择心情", 0).show();
+			ToastUtils.toToast("亲，点击心情->选择心情");
 			return false;
 		} else if ("".equals(titleEt.getText().toString().trim())) {
-			Toast.makeText(this, "亲，还没写标题", 0).show();
+			ToastUtils.toToast("亲，还没写标题");
 			return false;
 		} else if ("".equals(contentEt.getText().toString().trim())) {
-			Toast.makeText(this, "亲，记得写内容", 0).show();
+			ToastUtils.toToast("亲，记得写内容");
 			return false;
 		} else if (titleEt.getText().toString().length() > 20) {
-			Toast.makeText(this, "亲，标题不能超过20个字", 0).show();
+			ToastUtils.toToast("亲，标题不能超过20个字");
 			return false;
 		}
 		return true;
