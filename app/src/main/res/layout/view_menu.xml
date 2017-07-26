@@ -51,33 +51,11 @@
                     android:text="修改密码" />
 
                 <TextView
-                    android:id="@+id/menu_tv_tosd"
-                    style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
-                    android:text="导出日记"
-                    android:visibility="gone" />
-
-                <TextView
                     android:id="@+id/menu_tv_tome"
                     style="@style/main_menu_item_tv"
                     android:drawableLeft="@drawable/ic_notification"
                     android:drawablePadding="@dimen/padding_m"
                     android:text="意见反馈" />
-
-                <TextView
-                    android:id="@+id/menu_tv_help"
-                    style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
-                    android:text="帮助中心" />
-
-                <TextView
-                    android:id="@+id/menu_tv_about"
-                    style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
-                    android:text="关于我们" />
 
                 <TextView
                     android:id="@+id/menu_tv_move"

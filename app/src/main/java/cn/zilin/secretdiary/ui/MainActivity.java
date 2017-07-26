@@ -8,25 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +27,6 @@ import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.BackgroundThread;
 import cn.zilin.secretdiary.common.DataCommon;
-import cn.zilin.secretdiary.task.DiaryTask;
-import cn.zilin.secretdiary.ui.MyListView.onFristChangeListener;
-import cn.zilin.secretdiary.util.PreferencesUtil;
 
 import static cn.zilin.secretdiary.ui.R.layout.diary;
 
@@ -47,6 +34,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private RecyclerView contentRv;
 	private FloatingActionButton writeFab;
+	private TextView pwdMenuTv, toMeMenuTv;
+	private DrawerLayout rootDrawerLayout;
+	private final int DRAWER_GRAVITY_COMPAT = GravityCompat.START;
+
 	private DiaryAdapter adapter;
 	private DBBroadCastReceiver dbReceiver;
 	private long exitTime = 0;
@@ -63,8 +54,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void initLayout() {
 		writeFab = (FloatingActionButton) this.findViewById(R.id.main_fab_write);
 		contentRv = (RecyclerView) this.findViewById(R.id.main_rv_content);
-
-		writeFab.setOnClickListener(this);
+		pwdMenuTv = (TextView) this.findViewById(R.id.menu_tv_pwd);
+		toMeMenuTv = (TextView) this.findViewById(R.id.menu_tv_tome);
+		rootDrawerLayout = (DrawerLayout) findViewById(R.id.main_dl_root);
 
 		adapter = new DiaryAdapter(new DiaryAdapter.IDiaryListener() {
 			@Override
@@ -73,24 +65,17 @@ public class MainActivity extends Activity implements OnClickListener {
 						DiaryDisplayActivity.class);
 				intent.putExtra("index", pos);
 				intent.putExtra("diary", diary);
+				intent.putParcelableArrayListExtra("diaryList", adapter.getDataList());
 				startActivity(intent);
 			}
-		});
-		contentRv.setAdapter(adapter);
-		contentRv.setLayoutManager(new LinearLayoutManager(this));
-		initData();
-
-		/*contentLv.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view,
-										   int position, long id) {
-
-				final DiaryBean diary = (DiaryBean) parent
-						.getItemAtPosition(position);
-
-				final String title = diary.getTitle().length() > 5 ? diary.getTitle()
-						.substring(0, 5) + "..." : diary.getTitle();
+			public void onLongClick(final DiaryBean bean, int pos) {
+				if (bean == null) {
+					return;
+				}
+				final String title = bean.getTitle().length() > 5 ? bean.getTitle()
+						.substring(0, 5) + "..." : bean.getTitle();
 				new AlertDialog.Builder(MainActivity.this)
 						.setTitle(title)
 						.setItems(new String[] { "删除", "修改" },
@@ -100,7 +85,7 @@ public class MainActivity extends Activity implements OnClickListener {
 														int which) {
 										switch (which) {
 											case 0:
-												showDeleteDialog(title, diary);
+												showDeleteDialog(title, bean);
 												break;
 											case 1:
 												Intent intent = new Intent(
@@ -113,10 +98,19 @@ public class MainActivity extends Activity implements OnClickListener {
 										}
 									}
 								}).show();
-				return true;
 			}
-		});*/
+		});
+		contentRv.setAdapter(adapter);
+		contentRv.setLayoutManager(new LinearLayoutManager(this));
 
+		initListener(writeFab, pwdMenuTv, toMeMenuTv);
+		initData();
+	}
+
+	private void initListener(View... views) {
+		for (View view : views) {
+			view.setOnClickListener(this);
+		}
 	}
 
 	private void initData() {
@@ -144,8 +138,7 @@ public class MainActivity extends Activity implements OnClickListener {
 						if (new DiaryManage(
 								MainActivity.this)
 								.deleteDiary(diary)) {
-							DataCommon.diaryList.remove(diary);
-							//adapter.remove(diary);
+							adapter.removeData(diary);
 							Toast.makeText(MainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
 
 						} else {
@@ -175,9 +168,26 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.main_fab_write:
-				startActivity(new Intent(this, WriteActivity.class));
+				startActivity(WriteActivity.class);
+				break;
+			case R.id.menu_tv_pwd:
+				switchMenu();
+				startActivity(PasswordActivity.class);
+				break;
+			case R.id.menu_tv_tome:
+				startActivity(ToMeActivity.class);
+				switchMenu();
+				break;
+			case R.id.menu_tv_move:
+				startActivity(MoveDataActivity.class);
+				switchMenu();
 				break;
 		}
+	}
+
+	private void startActivity(Class<?> clazz){
+		startActivity(new Intent(this, clazz));
+		overridePendingTransition(R.anim.right_in, R.anim.left_out);
 	}
 
 	private void updateData() {
@@ -209,4 +219,16 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 
+	private void switchMenu() {
+		if (rootDrawerLayout.isDrawerOpen(DRAWER_GRAVITY_COMPAT)) {
+			ZnApp.getMainThreadHandler().postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					rootDrawerLayout.closeDrawer(DRAWER_GRAVITY_COMPAT);
+				}
+			}, 500);
+		} else {
+			rootDrawerLayout.openDrawer(DRAWER_GRAVITY_COMPAT);
+		}
+	}
 }

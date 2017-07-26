@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.zilin.secretdiary.bean.DiaryBean;
@@ -19,7 +20,7 @@ import cn.zilin.secretdiary.util.MyUtil;
 
 public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder> {
 
-    private List<DiaryBean> dataList;
+    private ArrayList<DiaryBean> dataList;
     private LayoutInflater inflater;
     private IDiaryListener idl;
 
@@ -27,7 +28,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
         this.idl = idl;
     }
 
-    public void setData(List<DiaryBean> addList) {
+    public void setData(ArrayList<DiaryBean> addList) {
         if (addList != null) {
             this.dataList = addList;
             notifyDataSetChanged();
@@ -67,6 +68,16 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
                 }
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View v) {
+                if (idl != null) {
+                    idl.onLongClick(diary, position);
+                }
+                return true;
+            }
+        });
     }
 
     private DiaryBean getBeanByPosition(int position) {
@@ -80,6 +91,17 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
     @Override
     public int getItemCount() {
         return dataList == null ? 0 : dataList.size();
+    }
+
+    public void removeData(DiaryBean diary) {
+        if (dataList != null) {
+            dataList.remove(diary);
+            notifyDataSetChanged();
+        }
+    }
+
+    public ArrayList<DiaryBean> getDataList() {
+        return dataList;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -104,5 +126,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
 
     public interface IDiaryListener{
         void onClick(DiaryBean bean, int pos);
+        void onLongClick(DiaryBean bean, int pos);
     }
 }

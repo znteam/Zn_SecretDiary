@@ -8,22 +8,20 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import cn.zilin.secretdiary.bean.DiaryBean;
 import cn.zilin.secretdiary.business.DiaryManage;
 import cn.zilin.secretdiary.common.DataCommon;
-import cn.zilin.secretdiary.util.PreferencesUtil;
 
 public class DiaryDisplayActivity extends Activity {
 
@@ -36,6 +34,7 @@ public class DiaryDisplayActivity extends Activity {
 
 	private int index;
 	private DiaryBean diary;
+	private ArrayList<DiaryBean> diaryList;
 
 	private Animation finishAnim;
 
@@ -45,37 +44,13 @@ public class DiaryDisplayActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (PreferencesUtil.isHelpStatus(this, PreferencesUtil.DIARYHELPSTATUS)) {
-			final ImageView helpIv = new ImageView(DiaryDisplayActivity.this);
-			helpIv.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-					LayoutParams.FILL_PARENT));
-			helpIv.setImageResource(R.drawable.help_item2);
-			helpIv.setScaleType(ScaleType.FIT_XY);
-			helpIv.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					helpIv.startAnimation(AnimationUtils.loadAnimation(
-							DiaryDisplayActivity.this, R.anim.help_anim));
-					initMainView();
-					PreferencesUtil.saveHelpStatus(DiaryDisplayActivity.this,
-							PreferencesUtil.DIARYHELPSTATUS, "ok");
-				}
-
-			});
-			setContentView(helpIv);
-		} else {
-			initMainView();
-		}
-
-	}
-
-	private void initMainView() {
 		setContentView(R.layout.diary);
 
 		index = getIntent().getIntExtra("index", -1);
 		diary = getIntent().getParcelableExtra("diary");
+		diaryList = getIntent().getParcelableArrayListExtra("diaryList");
 
-		if (DataCommon.diaryList != null && index != -1 && diary != null) {
+		if (diaryList != null && index != -1 && diary != null) {
 
 			parentLayout = (LinearLayout) findViewById(R.id.diary_layout);
 			diaryView = getDiaryView(diary);
@@ -109,7 +84,7 @@ public class DiaryDisplayActivity extends Activity {
 		signIv = (ImageView) diaryView
 				.findViewById(R.id.diary_view_iv_sign);
 		pageTv = (TextView) diaryView.findViewById(R.id.diary_view_tv_page);
-		pageTv.setText(index + 1 + "/" + DataCommon.diaryList.size());
+		pageTv.setText(index + 1 + "/" + diaryList.size());
 		return diaryView;
 	}
 
@@ -147,7 +122,8 @@ public class DiaryDisplayActivity extends Activity {
 		@Override
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 							   float velocityY) {
-			lable: if (Math.abs(e1.getY() - e2.getY()) > 150) {
+			lable:
+			if (Math.abs(e1.getY() - e2.getY()) > 150) {
 				break lable;
 			} else if (velocityX > 500 && e1.getX() - e2.getX() < 80
 					&& diaryView.getAnimation() == null) {
@@ -160,8 +136,8 @@ public class DiaryDisplayActivity extends Activity {
 				}
 				diaryView.startAnimation(AnimationUtils.loadAnimation(
 						DiaryDisplayActivity.this, R.anim.right_out));
-				diary = DataCommon.diaryList.get(index);
-				if(parentLayout!=null){
+				diary = diaryList.get(index);
+				if (parentLayout != null) {
 					parentLayout.removeAllViews();
 					diaryView = getDiaryView(diary);
 					parentLayout.addView(diaryView, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
@@ -173,19 +149,18 @@ public class DiaryDisplayActivity extends Activity {
 			} else if (velocityX < -500 && e1.getX() - e2.getX() > 80
 					&& diaryView.getAnimation() == null) {
 				index++;
-				if (index > DataCommon.diaryList.size() - 1) {
-					Toast.makeText(DiaryDisplayActivity.this, "这是最后一页", 0)
-							.show();
-					index = DataCommon.diaryList.size() - 1;
+				if (index > diaryList.size() - 1) {
+					ToastUtils.toToast("这是最后一页");
+					index = diaryList.size() - 1;
 					return true;
 				}
 				diaryView.startAnimation(AnimationUtils.loadAnimation(
 						DiaryDisplayActivity.this, R.anim.left_out));
-				diary = DataCommon.diaryList.get(index);
-				if(parentLayout!=null){
+				diary = diaryList.get(index);
+				if (parentLayout != null) {
 					parentLayout.removeAllViews();
 					diaryView = getDiaryView(diary);
-					parentLayout.addView(diaryView, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+					parentLayout.addView(diaryView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 				}
 				diaryView.startAnimation(AnimationUtils.loadAnimation(
 						DiaryDisplayActivity.this, R.anim.right_in));
@@ -201,7 +176,7 @@ public class DiaryDisplayActivity extends Activity {
 
 			new AlertDialog.Builder(DiaryDisplayActivity.this)
 					.setTitle("日记功能")
-					.setItems(new String[] { "删除", "修改", "标记" },
+					.setItems(new String[]{"删除", "修改", "标记"},
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -259,11 +234,9 @@ public class DiaryDisplayActivity extends Activity {
 							sendBroadcast(new Intent(
 									DataCommon.DELETE_DIARY_RECEIVED));
 							finish();
-							Toast.makeText(DiaryDisplayActivity.this, "删除成功", 0)
-									.show();
+							ToastUtils.toToast("删除成功");
 						} else {
-							Toast.makeText(DiaryDisplayActivity.this, "删除失败", 0)
-									.show();
+							ToastUtils.toToast("删除失败");
 						}
 					}
 				}).show();
