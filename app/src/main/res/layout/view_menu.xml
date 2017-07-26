@@ -20,14 +20,19 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/bg_book" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/menu_head_iv_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="25dp"
                 android:fitsSystemWindows="true"
-                android:src="@drawable/ic_launcher" />
+                android:text="@string/app_name"
+                android:textSize="@dimen/top_title_size"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:drawablePadding="@dimen/padding_s"
+                android:drawableLeft="@mipmap/ic_launcher" />
 
         </FrameLayout>
 
