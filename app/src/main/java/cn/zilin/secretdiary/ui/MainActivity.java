@@ -20,6 +20,8 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.ArrayList;
 
 import cn.zilin.secretdiary.adapter.DiaryAdapter;
@@ -101,6 +103,7 @@ public class MainActivity extends Activity implements OnClickListener {
 								}).show();
 			}
 		});
+
 		contentRv.setAdapter(adapter);
 		contentRv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -188,7 +191,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private void startActivity(Class<?> clazz){
 		startActivity(new Intent(this, clazz));
-		overridePendingTransition(R.anim.right_in, R.anim.left_out);
 	}
 
 	private class DBBroadCastReceiver extends BroadcastReceiver {

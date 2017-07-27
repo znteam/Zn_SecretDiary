@@ -39,7 +39,7 @@ public class ZnApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //CrashReport.initCrashReport(getApplicationContext(), "c87f27e612", false);
+        CrashReport.initCrashReport(getApplicationContext(), "4a06dc2d0c", false);
         mInstance = this;
         mContext = this;
         mMainThreadHandler = new Handler();

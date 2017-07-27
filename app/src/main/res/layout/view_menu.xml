@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="25dp"
+                android:drawableLeft="@mipmap/ic_launcher"
+                android:drawablePadding="@dimen/padding_m"
                 android:fitsSystemWindows="true"
-                android:text="@string/app_name"
-                android:textSize="@dimen/top_title_size"
                 android:gravity="center"
+                android:text="@string/app_name"
                 android:textColor="@color/white"
-                android:drawablePadding="@dimen/padding_s"
-                android:drawableLeft="@mipmap/ic_launcher" />
+                android:textSize="@dimen/top_title_size" />
 
         </FrameLayout>
 
@@ -46,27 +46,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="12dp">
 
                 <TextView
                     android:id="@+id/menu_tv_pwd"
                     style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
+                    android:drawableLeft="@drawable/ic_setting"
+                    android:drawablePadding="@dimen/padding_s"
+                    android:textSize="@dimen/menu_title_size"
                     android:text="@string/change_pwd" />
 
                 <TextView
                     android:id="@+id/menu_tv_tome"
                     style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
+                    android:drawableLeft="@drawable/ic_msg"
+                    android:drawablePadding="@dimen/padding_s"
+                    android:textSize="@dimen/menu_title_size"
                     android:text="@string/feedback" />
 
                 <TextView
                     android:id="@+id/menu_tv_move"
                     style="@style/main_menu_item_tv"
-                    android:drawableLeft="@drawable/ic_notification"
-                    android:drawablePadding="@dimen/padding_m"
+                    android:drawableLeft="@drawable/ic_move"
+                    android:drawablePadding="@dimen/padding_s"
+                    android:textSize="@dimen/menu_title_size"
                     android:text="@string/data_move" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

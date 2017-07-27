@@ -9,6 +9,10 @@ android {
         targetSdkVersion 21
         versionCode 120
         versionName "1.2.0"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -35,4 +39,5 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
     compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
 }

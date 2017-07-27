@@ -7,4 +7,5 @@
     <dimen name="padding_ss">5dp</dimen>
     <dimen name="line_size">0.8dp</dimen>
     <dimen name="top_title_size">20sp</dimen>
+    <dimen name="menu_title_size">16sp</dimen>
 </resources>
