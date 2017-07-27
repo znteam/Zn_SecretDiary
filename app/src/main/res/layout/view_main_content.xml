@@ -13,6 +13,7 @@
         app:elevation="0dp">
 
         <TextView
+            android:id="@+id/main_tv_title"
             style="@style/cover_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

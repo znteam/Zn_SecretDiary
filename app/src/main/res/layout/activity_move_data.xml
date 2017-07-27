@@ -36,10 +36,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dip"
-            android:text="日记将保存至sdcard卡根目录下：sceretdiary.db；\n使用方法：点击导出日记，成功后将sceretdiary.db拷贝到新手机上，并安装秘密日记，点击导入日记。" />
+            android:text="日记将保存至sdcard卡根目录下：secretdiary.db；\n使用方法：点击导出日记，成功后将secretdiary.db拷贝到新手机sdcard卡根目录上，并安装秘密日记，点击导入日记。" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dip">
 

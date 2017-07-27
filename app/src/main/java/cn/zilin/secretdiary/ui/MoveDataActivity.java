@@ -111,9 +111,9 @@ public class MoveDataActivity extends Activity implements OnClickListener {
     }
 
     private void saveData() {
-        final File file = new File(Environment.getExternalStorageDirectory() + "/sceretdiary.db");
+        final File file = new File(Environment.getExternalStorageDirectory() + "/secretdiary.db");
         if (!file.exists() || !file.isFile()) {
-            Toast.makeText(this, "SD卡根目录找不到sceretdiary.db，请先复制后再执行！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "SD卡根目录找不到secretdiary.db，请先复制后再执行！", Toast.LENGTH_SHORT).show();
             return;
         }
         mHandler.sendEmptyMessage(0);
@@ -150,7 +150,7 @@ public class MoveDataActivity extends Activity implements OnClickListener {
         Gson gson = new Gson();
         String gsonStr = gson.toJson(diaryList);
         PrintWriter out = new PrintWriter(new FileWriter(new File(diaryFile,
-                "sceretdiary.db")));
+                "secretdiary.db")));
         out.write(gsonStr);
         out.flush();
     }

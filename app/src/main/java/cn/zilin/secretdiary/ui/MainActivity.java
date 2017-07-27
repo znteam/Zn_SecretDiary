@@ -34,6 +34,7 @@ import static cn.zilin.secretdiary.ui.R.layout.diary;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+	private TextView titleTv;
 	private RecyclerView contentRv;
 	private FloatingActionButton writeFab;
 	private TextView pwdMenuTv, toMeMenuTv, moveDataMenuTv;
@@ -60,6 +61,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		toMeMenuTv = (TextView) this.findViewById(R.id.menu_tv_tome);
 		moveDataMenuTv = (TextView) this.findViewById(R.id.menu_tv_move);
 		rootDrawerLayout = (DrawerLayout) findViewById(R.id.main_dl_root);
+		titleTv = (TextView) findViewById(R.id.main_tv_title);
 
 		adapter = new DiaryAdapter(new DiaryAdapter.IDiaryListener() {
 			@Override
@@ -107,7 +109,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		contentRv.setAdapter(adapter);
 		contentRv.setLayoutManager(new LinearLayoutManager(this));
 
-		initListener(writeFab, pwdMenuTv, toMeMenuTv, moveDataMenuTv);
+		initListener(writeFab, pwdMenuTv, toMeMenuTv, moveDataMenuTv, titleTv);
 		initData();
 	}
 
@@ -184,6 +186,9 @@ public class MainActivity extends Activity implements OnClickListener {
 				break;
 			case R.id.menu_tv_move:
 				startActivity(MoveDataActivity.class);
+				switchMenu();
+				break;
+			case R.id.main_tv_title:
 				switchMenu();
 				break;
 		}
