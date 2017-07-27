@@ -94,7 +94,7 @@ public class MainActivity extends Activity implements OnClickListener {
 												Intent intent = new Intent(
 														MainActivity.this,
 														UpdateActivity.class);
-												intent.putExtra("diary", diary);
+												intent.putExtra("diary", bean);
 												MainActivity.this
 														.startActivity(intent);
 												break;

@@ -88,14 +88,12 @@ public class FirstSignDialog {
 		new DiaryManage(mContext).insertDiary(diary);
 
 		diary = new DiaryBean();
-		diary.setTitle("点击右上角处添加日记");
+		diary.setTitle("点击右下角处添加日记");
 		diary.setContent("秘密日记主页功能：\n1.点击列表，可打开浏览日记\n2.长按屏幕，可编辑日记（删除、修改）\n3.拖下列表，可显示/隐藏搜索日记（列表处于顶部状态时）\n4.根据标题关键字搜索相关标题的日记，输入“*”可搜索所有标志重要的日记\n5.菜单或搜索按键可显示/隐藏搜索日记功能\n");
 		diary.setSign("1");
 		diary.setMood("mood_bg_01.png");
 		diary.setTime(System.currentTimeMillis() + "");
 		new DiaryManage(mContext).insertDiary(diary);
-
-		diary = null;
 	}
 
 }
