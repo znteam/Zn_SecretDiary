@@ -7,7 +7,7 @@ import android.os.Environment;
 public class MyUtil {
 
 	public static String convertTime(String time) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		long tt = -1;
 		try {
 			tt = Long.parseLong(time);
